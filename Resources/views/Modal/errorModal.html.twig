@@ -1,0 +1,9 @@
+<div id="{% if id is defined %}{{id}}{% else %}error-modal{% endif %}" class="modal" style="display:none;">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal">&times;</a>
+		<h3>{{ title|default("Modal") }}</h3>
+	</div>
+	<div class="modal-body">
+		<p>{{ message|default("Message") }}</p>
+	</div>
+</div>

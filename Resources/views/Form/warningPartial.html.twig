@@ -1,0 +1,10 @@
+{% spaceless %}
+<div class="alert alert-warning" {% if hidden is defined %}style="display:none;"{% endif %} {% if id is defined %}id="warning-{{id}}"{% endif %}>
+  <a class="close" data-dismiss="alert">&times;</a>
+  <h4 class="alert-heading">{{ "warning.box.title" |trans }}</h4>
+  <p>
+		{{ "warning.box.summary" |trans }}
+	</p>
+	<ul></ul>
+</div>
+{% endspaceless %}

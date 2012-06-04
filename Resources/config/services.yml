@@ -1,0 +1,6 @@
+parameters:
+services:
+  striide_twitter_bootstrap.twig.form.extension:
+    class: Striide\TwitterbootstrapBundle\Extension\FormExtension
+    tags:
+      - { name: twig.extension }

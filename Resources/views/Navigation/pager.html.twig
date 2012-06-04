@@ -1,0 +1,12 @@
+<ul class="pager">
+{% if show_previous %}
+	<li class="previous .disabled">
+		<a href="?page={{ previous_page }}" class="page" data-page="{{ previous_page }}">&larr; Newer</a>
+	</li>
+{% endif %}
+{% if show_next %}
+	<li class="next .disabled">
+		<a href="?page={{ next_page }}" class="page" data-page="{{ next_page }}">Older &rarr;</a>
+	</li>
+{% endif %}
+</ul>
