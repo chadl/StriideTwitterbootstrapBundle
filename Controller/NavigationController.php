@@ -1,6 +1,10 @@
 <?php
 namespace Striide\TwitterbootstrapBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
+
+use Striide\TwitterbootstrapBundle\Model\Navigation;
+use Striide\TwitterbootstrapBundle\Factory\NavigationFactory;
 
 class NavigationController extends Controller
 {
@@ -12,5 +16,27 @@ class NavigationController extends Controller
       'next_page' => $page + 1,
       'previous_page' => $page - 1
     ));
+  }
+
+  public function breadcrumbAction($crumbs = null)
+  {
+    if(is_null($crumbs))
+    {
+      return new Response('');
+    }
+
+    if(is_array($crumbs))
+    {
+      $crumbs = NavigationFactory::getNavigationFromArray($crumbs);
+    }
+    if(! $crumbs instanceof Navigation)
+    {
+      return new Response('');
+    }
+    return $this->render('StriideTwitterbootstrapBundle:Navigation:breadcrumb.html.twig',
+                        array(
+                          'crumbs' => $crumbs
+                        )
+    );
   }
 }

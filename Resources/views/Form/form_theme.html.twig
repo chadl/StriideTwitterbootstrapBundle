@@ -2,10 +2,11 @@
 
 {% block generic_label %}
 {% spaceless %}
+  {% set attr = attr|merge({'class': attr.class|default('') ~ ' control-label'}) %}
     {% if required %}
         {% set attr = attr|merge({'class': attr.class|default('') ~ ' required'}) %}
     {% endif %}
-		<label for="{{ id }}">{% if label is defined %}{{ label|trans([],'forms')}}{% else %}{{ name|trans([], 'forms') }}{% endif %}</label>
+		<label class="{{ attr.class }}" for="{{ id }}">{% if label is defined %}{{ label|trans([],'forms')}}{% else %}{{ name|trans([], 'forms') }}{% endif %}</label>
 {% endspaceless %}
 {% endblock %}
 

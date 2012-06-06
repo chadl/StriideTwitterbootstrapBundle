@@ -1,0 +1,13 @@
+{% if crumbs is defined and crumbs.hasLinks %}
+<ul class="breadcrumb">
+  {% for crumb in crumbs.links %}
+  {% if loop.last %}
+    <li class="active">{{ crumb.label }}</li>
+  {% else %}
+  <li>
+    <a class="{{ crumb.cssClass}}" href="{{ crumb.url }}">{{ crumb.label }}</a> <span class="divider">/</span>
+  </li>
+  {% endif %}
+  {% endfor %}
+</ul>
+{% endif %}
