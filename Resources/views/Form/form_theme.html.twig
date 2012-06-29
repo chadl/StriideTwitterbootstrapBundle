@@ -1,5 +1,11 @@
 {% extends 'form_div_layout.html.twig' %}
 
+{% block date_widget %}
+  {# big fat warning, this will likely step on dat field toes #}
+  {% set type = type|default('date') %}
+  {{ block('field_widget') }}
+{% endblock %}
+
 {% block generic_label %}
 {% spaceless %}
   {% set attr = attr|merge({'class': attr.class|default('') ~ ' control-label'}) %}
