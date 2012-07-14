@@ -1,0 +1,21 @@
+{% if errors|count is not sameas(0) and errors %}{% spaceless %}
+<div class="alert alert-error">
+  <a class="close" data-dismiss="alert">&times;</a>
+  <h4 class="alert-heading">{{ "error.box.title" |trans }}</h4>
+  <p>
+		{{ "error.box.summary" |trans }}
+	</p>
+	{% if errors|count > 0 %}
+	<ul>
+	{% for e in errors %}
+		<li>{{ e.messageTemplate }}</li>
+	{% endfor %}
+	</ul>
+	{% endif %}
+
+	{% if error is defined  %}
+	<ul><li>{{ error }}</li></ul>
+	{% endif %}
+
+</div>
+{% endspaceless %}{% endif %}
