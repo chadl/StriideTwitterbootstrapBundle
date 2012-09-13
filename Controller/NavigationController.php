@@ -8,13 +8,14 @@ use Striide\TwitterbootstrapBundle\Factory\NavigationFactory;
 
 class NavigationController extends Controller
 {
-  public function pagerAction($page)
+  public function pagerAction($page,$filter =  null)
   {
     return $this->render('StriideTwitterbootstrapBundle:Navigation:pager.html.twig', array(
       'show_previous' => $page != 1,
       'show_next' => true,
       'next_page' => $page + 1,
-      'previous_page' => $page - 1
+      'previous_page' => $page - 1,
+      'filter' => $filter
     ));
   }
 
