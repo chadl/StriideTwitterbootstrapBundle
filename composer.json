@@ -20,5 +20,5 @@
 			"Striide\\TwitterbootstrapBundle": ""
 		}
 	},
-	"target-dir": "Striide/TwitterbootstrapBundle/StriideTwitterbootstrapBundle"
+	"target-dir": "Striide/TwitterbootstrapBundle"
 }
