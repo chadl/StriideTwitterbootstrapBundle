@@ -1,13 +1,7 @@
 {% extends 'form_div_layout.html.twig' %}
 
-{#
-{% block date_widget %}
-  {% set type = type|default('date') %}
-  {{ block('field_widget') }}
-{% endblock %}
-#}
 
-{% block generic_label %}
+{% block form_label %}
 {% spaceless %}
   {% set attr = attr|merge({'class': attr.class|default('') ~ ' control-label'}) %}
     {% if required %}
@@ -24,7 +18,7 @@
 {% endspaceless %}
 {% endblock widget_attributes %}
 
-{% block field_row %}
+{% block form_row %}
 {% spaceless %}
 <div class="control-group">
 	{{ form_label(form) }}
@@ -35,7 +29,7 @@
 	</div>
 </div>
 {% endspaceless %}
-{% endblock field_row %}
+{% endblock form_row %}
 
 {% block choice_widget %}
 {% spaceless %}
