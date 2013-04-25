@@ -1,0 +1,35 @@
+<div {% if id is defined %}id="{{id}}"{% endif %} class="modal" style="display:none;">
+  {% if modal_form is defined %}
+  <form>
+  {% endif %}
+
+  {% block modal_header %}
+	<div class="modal-header">
+    {% block modal_header_content %}
+      <a class="close" data-dismiss="modal">&times;</a>
+      <h3>{{ title|default("Modal") }}</h3>
+    {% endblock %}
+	</div>
+  {% endblock %}
+
+  {% block modal_body %}
+	<div class="modal-body">
+    {% block modal_body_content %}
+		<p>{{ message|default("Message") }}</p>
+    {% endblock %}
+	</div>
+  {% endblock %}
+
+  {% block modal_footer %}
+  <div class="modal-footer">
+		{% block modal_footer_content %}
+    <a href="#" class="btn">{{ cancel|default("Cancel")}}</a>
+    <a href="#" class="btn btn-primary">{{ save|default("Save")}}</a>
+		{% endblock modal_footer_content %}
+  </div>
+  {% endblock %}
+
+  {% if modal_form is defined %}
+  </form>
+  {% endif %}
+</div>

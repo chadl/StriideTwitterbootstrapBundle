@@ -4,3 +4,9 @@ services:
     class: Striide\TwitterbootstrapBundle\Extension\FormExtension
     tags:
       - { name: twig.extension }
+  
+  striide_twitter_bootstrap.twig.modal.extension:
+    class: Striide\TwitterbootstrapBundle\Extension\ModalExtension
+    arguments: [@twig]
+    tags:
+      - { name: twig.extension }
