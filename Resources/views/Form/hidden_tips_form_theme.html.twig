@@ -6,15 +6,3 @@
     {% for attrname,attrvalue in attr %}{% if attrname == "tip" %}hidden-tip="{{attrvalue|trans([],"forms")}}" {% else %}{{attrname}}="{{attrvalue}}"{% endif %} {% endfor %}
 {% endspaceless %}
 {% endblock widget_attributes %}
-
-{% block field_row %}
-{% spaceless %}
-<div class="control-group">
-	{{ form_label(form) }}
-	<div class="controls">
-		{{ form_widget(form) }}
-		{{ form_errors(form) }}
-	</div>
-</div>
-{% endspaceless %}
-{% endblock field_row %}
