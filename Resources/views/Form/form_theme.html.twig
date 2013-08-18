@@ -12,8 +12,9 @@
 
 {% block widget_attributes %}
 {% spaceless %}
+	{% set attr = attr|merge({'class': attr.class|default('') ~ ' form-control'}) %}
     id="{{ id }}" name="{{ full_name }}"{% if read_only %} disabled="disabled"{% endif %}{% if required %} required="required"{% endif %}{% if max_length %} maxlength="{{ max_length }}"{% endif %}{% if pattern %} pattern="{{ pattern }}"{% endif %}
-    {% for attrname,attrvalue in attr %}{% if attrname == "tip" %}{{attrname}}="{{attrvalue|trans([],"forms")}}" {% else %}{{attrname}}="{{attrvalue}}{% if attrname == "class" %} form-control{% endif %}"{% endif %} {% endfor %}
+    {% for attrname,attrvalue in attr %}{% if attrname == "tip" %}{{attrname}}="{{attrvalue|trans([],"forms")}}" {% else %}{{attrname}}="{{attrvalue}}"{% endif %} {% endfor %}
 {% endspaceless %}
 {% endblock widget_attributes %}
 
@@ -30,16 +31,16 @@
 {% endspaceless %}
 {% endblock form_row %}
 
-{% block url_widget %}
+{% block ___form_widget %}
 	{% set attr = attr|merge({'class': attr.class|default('') ~ ' form-control'}) %}
   {{ parent() }}
-{% endblock url_widget %}
+{% endblock ___form_widget %}
 
 {% block choice_widget %}
 {% spaceless %}
 		{% if expanded %}
 			{% for child in form %}
-				<label class="{% if multiple %}checkbox{% else %}radio{% endif %} {% if form|is_inline %} inline{% endif %}">{{ form_widget(child) }} {{ child|field_label|trans([],'forms') }} </label>
+				<label class="{% if multiple %}{% if form|is_inline %}{% else %}checkbox{% endif %}{% else %}{% if form|is_inline %}{% else %}radio{% endif %}{% endif %} {% if form|is_inline %} {% if multiple %}checkbox-inline{% else %}radio-inline{% endif %}{% endif %}">{{ form_widget(child) }} {{ child|field_label|trans([],'forms') }} </label>
 			{% endfor %}
 		{% else %}
 			{% set attr = attr|merge({'class': attr.class|default('') ~ ' form-control'}) %}
