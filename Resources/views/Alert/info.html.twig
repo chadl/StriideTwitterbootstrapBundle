@@ -1,14 +1,3 @@
-{% spaceless %}
-<div class="alert alert-info" {% if hidden is defined %}style="display:none;"{% endif %} {% if id is defined %}id="warning-{{id}}"{% endif %}>
-  <a class="close" data-dismiss="alert">&times;</a>
-  <h4 class="alert-heading">{% if title is defined %}{{title}}{%else%}{{ "info.box.title" | trans }}{% endif %}</h4>
-  <p>
-		{% if message is defined %}
-			{{ message }}
-		{% else %}
-			{{ "info.box.summary" | trans }}
-		{% endif %}
-	</p>
-	<ul></ul>
-</div>
-{% endspaceless %}
+{% extends 'StriideTwitterbootstrapBundle:Alert:_alert.html.twig' %}
+
+{% set alert_type="alert-info"%}
