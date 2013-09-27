@@ -1,5 +1,5 @@
 
-<div {% if id is defined %}id="{{id}}"{% endif %} class="modal" style="display:none;" {% block extra_attributes %}{% endblock %}>
+<div {% if id is defined %}id="{{id}}"{% endif %} class="modal {{ class|default('')}}" style="display:none;" {% block extra_attributes %}{% endblock %}>
 
 	<div class="modal-dialog">
 		<div class="modal-content">
