@@ -4,7 +4,16 @@ use Symfony\Component\HttpKernel\Kernel;
 
 class FormExtension extends \Twig_Extension
 {
-  public function getFilters() 
+  protected $logger;
+  public function setLogger($l)
+  {
+    $this->logger = $l;
+  }
+
+  /**
+   *
+   */
+  public function getFilters()
   {
     return array(
       'form_value' => new \Twig_Filter_Method($this, 'formValue') ,
@@ -14,82 +23,110 @@ class FormExtension extends \Twig_Extension
       'is_inline' => new \Twig_Filter_Method($this, 'isInlineFieldOptions') ,
     );
   }
-  public function getTests() 
+
+  /**
+   *
+   */
+  public function getTests()
   {
     return array(
       'emptyformfield' => new \Twig_Test_Method($this, 'formFieldEmpty') ,
       'notempty' => new \Twig_Test_Method($this, 'notempty')
     );
   }
+
   /**
    * checks to see if the form field is empty
    */
-  public function formFieldEmpty($formFieldObject) 
+  public function formFieldEmpty($formFieldObject)
   {
-    $value = $formFieldObject->get('value');
-    
-    if (empty($value)) 
+    //$this->logger->info(__METHOD__,array($formFieldObject));
+
+    $value = $formFieldObject->vars['value'];
+
+    if (empty($value))
     {
       return true;
     }
     return false;
   }
+
   /**
    * checks to see if the form field has a tip
    */
-  public function hasFieldTip($formFieldObject) 
+  public function hasFieldTip($formFieldObject)
   {
-    $attr = $formFieldObject->get('attr');
-    
-    if (isset($attr['tip'])) 
+    //$this->logger->info(__METHOD__,array($formFieldObject));
+
+    $attr = $formFieldObject->vars['attr'];
+
+    if (isset($attr['tip']))
     {
       return true;
     }
     return false;
   }
+
   /**
    * checks to see if the form field is inline
    */
-  public function isInlineFieldOptions($formFieldObject) 
+  public function isInlineFieldOptions($formFieldObject)
   {
-    $attr = $formFieldObject->get('attr');
-    
-    if (isset($attr['inline'])) 
+    //$this->logger->info(__METHOD__,array($formFieldObject));
+    $attr = $formFieldObject->vars['attr'];
+
+    if (isset($attr['inline']))
     {
       return true;
     }
     return false;
   }
+
   /**
    * checks to see if the form field has a tip
    */
-  public function getFieldTip($formFieldObject) 
+  public function getFieldTip($formFieldObject)
   {
-    $attr = $formFieldObject->get('attr');
+    //$this->logger->info(__METHOD__,array($formFieldObject));
+    $attr = $formFieldObject->vars['attr'];
     return $attr['tip'];
   }
+
   /**
    * gets the field label
    */
-  public function getFieldLabel($formFieldObject) 
+  public function getFieldLabel($formFieldObject)
   {
-    $label = $formFieldObject->get('label');
+    //$this->logger->info(__METHOD__,array($formFieldObject->vars['label'],$formFieldObject->vars['value']));
+    $label = $formFieldObject->vars['label'];
     return $label;
   }
-  public function notempty($value) 
+
+  /**
+   *
+   */
+  public function notempty($value)
   {
-    
-    if (!empty($value)) 
+    if (!empty($value))
     {
       return true;
     }
     return false;
   }
-  public function formValue($formFieldObject) 
+
+  /**
+   *
+   */
+  public function formValue($formFieldObject)
   {
-    return $formFieldObject->get('value');
+    //$this->logger->info(__METHOD__,array($formFieldObject));
+    return $formFieldObject->vars['value'];
   }
-  public function getName() 
+
+  /**
+   *
+   */
+  public function getName()
   {
     return 'striide_Twitterbootstrap_form_twig_extension';
   }

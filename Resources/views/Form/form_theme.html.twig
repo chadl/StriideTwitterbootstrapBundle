@@ -37,27 +37,7 @@
 {% endblock ___form_widget %}
 
 {% block choice_widget %}
-{% spaceless %}
-		{% if expanded %}
-			{% for child in form %}
-				<label class="{% if multiple %}{% if form|is_inline %}{% else %}checkbox{% endif %}{% else %}{% if form|is_inline %}{% else %}radio{% endif %}{% endif %} {% if form|is_inline %} {% if multiple %}checkbox-inline{% else %}radio-inline{% endif %}{% endif %}">{{ form_widget(child) }} {{ child|field_label|trans([],'forms') }} </label>
-			{% endfor %}
-		{% else %}
-			{% set attr = attr|merge({'class': attr.class|default('') ~ ' form-control'}) %}
-		<select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
-				{% if empty_value is not none %}
-						<option value="">{{ empty_value|trans([],'forms') }}</option>
-				{% endif %}
-				{% if preferred_choices|length > 0 %}
-						{% set options = preferred_choices %}
-						{{ block('widget_choice_options') }}
-						{% if choices|length > 0 and separator is not none %}
-								<option disabled="disabled">{{ separator }}</option>
-						{% endif %}
-				{% endif %}
-				{% set options = choices %}
-				{{ block('widget_choice_options') }}
-		</select>
-		{% endif %}
-{% endspaceless %}
-{% endblock choice_widget %}
+	{% set attr = attr|merge({'class': attr.class|default('') ~ ' form-control'}) %}
+	{{ parent() }}
+{% endblock %}
+
