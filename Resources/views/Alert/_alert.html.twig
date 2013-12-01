@@ -4,7 +4,7 @@
   <h4 class="alert-heading">{% if title is defined %}{{title}}{%else%}{{ "info.box.title" | trans }}{% endif %}</h4>
   <p>
 		{% if message is defined %}
-			{{ message }}
+			{{ message | raw}}
 		{% else %}
 			{{ "info.box.summary" | trans }}
 		{% endif %}
