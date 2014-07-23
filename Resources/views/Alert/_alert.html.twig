@@ -1,14 +1,13 @@
 {% spaceless %}
-<div class="alert {{ alert_type }}" {% if hidden is defined %}style="display:none;"{% endif %} {% if id is defined %}id="warning-{{id}}"{% endif %}>
-  <a class="close" data-dismiss="alert">&times;</a>
-  <h4 class="alert-heading">{% if title is defined %}{{title}}{%else%}{{ "info.box.title" | trans }}{% endif %}</h4>
-  <p>
-		{% if message is defined %}
-			{{ message | raw}}
-		{% else %}
-			{{ "info.box.summary" | trans }}
-		{% endif %}
-	</p>
-	<ul></ul>
-</div>
+    <div class="alert {{ alert_type }} alert-block alert-notification fade in" {% if hidden is defined %}style="display:none;"{% endif %} {% if id is defined %}id="warning-{{id}}"{% endif %}>
+        <a href="#" data-dismiss="alert" class="close">&times;</a>
+        <h6>{% if title is defined %}{{title}}{%else%}{{ "info.box.title" | trans }}{% endif %}</h6>
+        <ul>
+            {% if message is defined %}
+                <li><span>{{ message | raw}}</span></li>
+            {% else %}
+                <li><span>{{ "info.box.summary" | trans }}</span></li>
+            {% endif %}
+        </ul>
+    </div>
 {% endspaceless %}
