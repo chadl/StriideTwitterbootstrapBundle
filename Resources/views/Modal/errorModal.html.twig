@@ -7,4 +7,12 @@
 	<p>{{ message|default("Message") }}</p>
 {% endblock modal_body_content %}
 
-{% block modal_footer %}{% endblock %}
+{% block modal_footer %}
+    <div class="modal-footer">
+        {% block modal_footer_content %}
+            <div class="row">
+                <a href="#" class="btn btn-primary" data-dismiss="modal">{{ cancel|default("Close") }}</a>
+            </div>
+        {% endblock modal_footer_content %}
+    </div>
+{% endblock %}
